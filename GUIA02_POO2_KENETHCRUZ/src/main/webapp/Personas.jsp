@@ -1,8 +1,13 @@
 <%-- 
     Document   : Personas
     Created on : 08-10-2016, 05:23:08 PM
-    Author     : Laboratorio
+    Author     : Orlando cruz
 --%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -83,41 +88,26 @@
                 </div>
 
                 <br><br>
-                <form class="col s12" name="PersForm" method="POST" action="PersServ">
-                    <input type="hidden" name="CODI_PERS" value="${CODI_PERS}"/>
+                <form class="col s12" role="form" action="PersonaServ" method="post">
+                    <input type="hidden" name="CodiPers" value="${CodiPers}"/>
                     <div class="row col s6">
                                 <label>Selecione el tipo persona</label>
-                                <select class="browser-default" name="cmbTipoPers">
-                                    <--jsp:useBean id="beanPiezasCtrl" class="com.sv.udb.controlador.PiezasCtrl" scope="page"/>
-                                    <c:forEach items="${beanPiezasCtrl.consTodo()}" var="fila">
-                                        <c:choose>
-                                            <c:when test="${fila.codiPiez eq cmbPiez}">
-                                                <option name="codi_piez" value="${fila.codiPiez}" selected="">${fila.nombPiez}</option>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <option name="codi_piez" value="${fila.codiPiez}">${fila.nombPiez}</option>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:forEach>
-                                </select>
+                                <select class="browser-default" name="cmbTipoPersona" id="cmbTipoPersona">
+                                <jsp:useBean id="beanTipoPersonaCtrl" class="com.sv.udb.controlador.TipoPersonaCtrl" scope="page"/>
+                                <c:forEach items="${beanTipoPersonaCtrl.consTodo()}" var="fila">
+                                    <c:choose>
+                                        <c:when test="${fila.CodiTipoPers eq cmbTipoPersona}">
+                                            <option name="CodiTipoPers" value="${fila.CodiTipoPers}" selected="">${fila.NombTipoPers}</option>
+                                        </c:when>
+                                        <c:otherwise>
+                                    <option name="CodiTipoPers" value="${fila.CodiTipoPers}">${fila.NombTipoPers}</option>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </select>
                             </div>
                                             
-                <div class="row col s6">
-                                <label>Selecione el genero</label>
-                                <select class="browser-default" name="cmbGenePers">
-                                    <--jsp:useBean id="beanPiezasCtrl" class="com.sv.udb.controlador.PiezasCtrl" scope="page"/>
-                                    <c:forEach items="${beanPiezasCtrl.consTodo()}" var="fila">
-                                        <c:choose>
-                                            <c:when test="${fila.codiPiez eq cmbPiez}">
-                                                <option name="codi_piez" value="${fila.codiPiez}" selected="">${fila.nombPiez}</option>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <option name="codi_piez" value="${fila.codiPiez}">${fila.nombPiez}</option>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </c:forEach>
-                                </select>
-                            </div>
+               
                                            
                     <div class="row">
                         <div class="row col s12">
