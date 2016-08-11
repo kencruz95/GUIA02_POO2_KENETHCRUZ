@@ -76,25 +76,143 @@
             <div class="row">
                 <h2 class="center-align">Registros de personal</h2>
                 <div class="input-field col s6">
-                    <h5>Movimiento realizado:</h5>
+                    <center><h5>Movimiento realizado:</h5></center>
                 </div>
                 <div class="input-field col s6">
                     <center><h5>${mensAler}</h5></center>
                 </div>
-                
-                
+
                 <br><br>
-                <form class="" method="post" action="DatosReportes/reporte1.jsp" target="_blank">
-                <div class="row">
+                <form class="col s12" name="PersForm" method="POST" action="PersServ">
+                    <input type="hidden" name="CODI_PERS" value="${CODI_PERS}"/>
+                    <div class="row col s6">
+                                <label>Selecione el tipo persona</label>
+                                <select class="browser-default" name="cmbTipoPers">
+                                    <--jsp:useBean id="beanPiezasCtrl" class="com.sv.udb.controlador.PiezasCtrl" scope="page"/>
+                                    <c:forEach items="${beanPiezasCtrl.consTodo()}" var="fila">
+                                        <c:choose>
+                                            <c:when test="${fila.codiPiez eq cmbPiez}">
+                                                <option name="codi_piez" value="${fila.codiPiez}" selected="">${fila.nombPiez}</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option name="codi_piez" value="${fila.codiPiez}">${fila.nombPiez}</option>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                                            
+                <div class="row col s6">
+                                <label>Selecione el genero</label>
+                                <select class="browser-default" name="cmbGenePers">
+                                    <--jsp:useBean id="beanPiezasCtrl" class="com.sv.udb.controlador.PiezasCtrl" scope="page"/>
+                                    <c:forEach items="${beanPiezasCtrl.consTodo()}" var="fila">
+                                        <c:choose>
+                                            <c:when test="${fila.codiPiez eq cmbPiez}">
+                                                <option name="codi_piez" value="${fila.codiPiez}" selected="">${fila.nombPiez}</option>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <option name="codi_piez" value="${fila.codiPiez}">${fila.nombPiez}</option>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                                           
+                    <div class="row">
+                        <div class="row col s12">
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Fotografia</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                                            
+                                            
+                    <div class="row">
+                        
+                        <div class="input-field col s6">
+                            <input name="NOMB_PERS" type="text" class="validate" value="${NOMB_PERS}">
+                            <label for="NOMB_PERS">Nombre  </label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input name="APEL_PERS" type="text" class="validate"  value="${APEL_PERS}">
+                            <label for="APEL_PERS">Apellido </label>
+                        </div>
+                    </div>
                     
-                </div>
+                    <div class="row">
+                        
+                        <div class="input-field col s6">
+                            <input name="DUI_PERS" type="text" class="validate" value="${DUI_PERS}">
+                            <label for="DUI_PERS">DUI </label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input name="NIT_PERS" type="text" class="validate"  value="${NIT_PERS}">
+                            <label for="NIT_PERS">NIT</label>
+                        </div>
+                    </div>
+                 <div class="row">
+                    <div class="input-field col s6">
+                        <label for="FECH_NACI_PERS">Fecha nacimiento</label>
+                        <br>
+                        <input name="FECH_NACI_PERS" type="date" class="validate"  value="${FECH_NACI_PERS}"/>
+                        
+                    </div>
+                        <br>
+                        <div class="input-field col s6">
+                            <input name="TIPO_SANG_PERS" type="text" class="validate"  value="${TIPO_SANG_PERS}">
+                            <label for="TIPO_SANG_PERS">Tipo de sangre</label>
+                        </div>
+                </div>           
+               
+                 <div class="row">
+                    <div class="input-field col s6">
+                        <label for="FECH_ALTA">Fecha alta</label>
+                        <br>
+                        <input name="FECH_ALTA" type="date" class="validate"  value="${FECH_ALTA}"/>
+                        
+                    </div>
+                        
+                    <div class="input-field col s6">
+                        <label for="FECH_BAJA">Fecha baja</label>
+                        <br>
+                        <input name="FECH_BAJA" type="date" class="validate"  value="${fech_comp}"/>
+                        
+                    </div>
+                </div> 
+       
+                        
+                <div class="row">
+                    <div class="input-field col s6">
+                        <label for="CODI_UBIC_GEOG">Codigo de ubicacion geografica</label>
+                        <br>
+                        <input name="CODI_UBIC_GEOG" type="text" class="validate" value="${CODI_UBIC_GEOG}"/>
+                        
+                    </div>
+                    <div class="input-field col s6">
+                        <input type="checkbox" id="test5" value="${ESTA}" />
+                        <label for="test5">Estado del usuario</label>
+                        
+                    </div>
+                </div>        
+        
                         <br><br><br>
         <!--acciones-->
         <div class="container" style="margin-bottom: 128px;">
             <div class="row">
                 
                 <div class="col s12 center-align">
-                     <input type="submit" class="waves-effect waves-light btn" id="boton"  name="cursBton" value="Generar reporte"/>
+                     <input type="submit" class="waves-effect waves-light btn"  name="cursBton" value="Guardar"/>
+                     <input type="submit" class="waves-effect waves-light btn"  name="cursBton" value="Modificar"/>
+                     <input type="submit" class="waves-effect waves-light btn"  name="cursBton" value="Eliminar" onclick="return confirm('¿Estas seguro que deseas eliminar este registro?');"/>
+                     
+                    
                 </div>
             </div>
         </div>
